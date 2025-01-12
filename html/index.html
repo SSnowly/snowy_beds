@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Key Shortcut Display</title>
+  <meta name="author" content="BeansFL (Circle)">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/vue@3"></script>
+</head>
+<body>
+  <div id="app">
+    <div :class="['shortcuts', isVisible ? 'visible' : 'hidden']">
+      <div v-for="(shortcut, index) in shortcuts" :key="index" class="shortcut">
+        <div class="outer-box">
+          <div class="inner-box">
+            {{ shortcut.key }}
+          </div>
+        </div>
+        <span class="action">{{ shortcut.text }}</span>
+      </div>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
