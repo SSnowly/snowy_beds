@@ -272,15 +272,16 @@ lib.addKeybind({
     description = 'Logout (Don\'t Change)',
     defaultKey = 'Q',
     onPressed = function()
-        SendNuiMessage(json.encode({
-            action = "hide"
-        }))
-        DoScreenFadeOut(1000)
-        Wait(1000)
-        bedSide = nil
-        isOnBed = false
-
-        TriggerServerEvent('snowy_bed:server:logout')
+        if isOnBed and bedSide then 
+            SendNuiMessage(json.encode({
+                action = "hide"
+            }))
+            DoScreenFadeOut(1000)
+            Wait(1000)
+            bedSide = nil
+            isOnBed = false
+            TriggerServerEvent('snowy_bed:server:logout')
+        end
     end
 })
 
@@ -289,13 +290,15 @@ lib.addKeybind({
     description = 'Quit (Don\'t Change)',
     defaultKey = 'R',
     onPressed = function()
-        SendNuiMessage(json.encode({
-            action = "hide"
-        }))
-        DoScreenFadeOut(1000)
-        Wait(1000)
-        bedSide = nil
-        isOnBed = false
-        TriggerServerEvent('snowy_bed:server:quit')
+        if isOnBed and bedSide then
+            SendNuiMessage(json.encode({
+                action = "hide"
+            }))
+            DoScreenFadeOut(1000)
+            Wait(1000)
+            bedSide = nil
+            isOnBed = false
+            TriggerServerEvent('snowy_bed:server:quit')
+        end
     end
 })
