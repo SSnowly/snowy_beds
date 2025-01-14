@@ -1,24 +1,28 @@
 Snowy's Resource License
 Version 1.0
-Effective Date: 2025.01.08
+Effective Date: 2025-01-08
 
 1. Definitions
-1.1 "Work" refers to the software, code, assets, or materials covered under this license.
+1.1 "Work" refers to the software, code, assets, or materials covered by this license, titled "Snowy Drops."
 1.2 "You" refers to the individual or entity using the Work.
+1.3 "Original Author" refers to the creator or owner of the Work.
 
 2. Permissions
-2.1 You are allowed to use the Work on your own server, provided you give proper credit to the original author.
-2.2 Proper credit includes clearly attributing the original author in a visible location, such as documentation, website footer, or application credits.
+2.1 You are granted a non-exclusive, non-transferable, and revocable right to use the Work on your own server.
+2.2 You must provide clear and visible credit to the Original Author. Acceptable forms of credit include, but are not limited to:
 
+Displaying the name "Snowy Beds" prominently in documentation, a website footer, or application credits.
 3. Restrictions
-3.1 You may not use the Work for any commercial purposes.
-3.2 You may not reproduce, redistribute, or resell the Work in any way or form, either in part or in whole.
-3.3 You may not modify the Work and distribute the modified version without explicit written permission from the original author.
+3.1 No Commercial Use: You may not use the Work for any commercial purposes, including but not limited to selling, licensing, or offering it as part of a paid service.
+3.2 No Redistribution: You may not reproduce, redistribute, or resell the Work, either in part or in whole, in any format.
+3.3 No Unauthorized Modifications: You may not modify the Work and distribute the modified version without explicit prior written permission from the Original Author.
+3.4 Integrity of Attribution: You may not remove or alter any credit to the Original Author or the name "Snowy Drops" within the Work.
 
 4. Disclaimer
-THE WORK IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. THE AUTHOR IS NOT LIABLE FOR ANY DAMAGES ARISING FROM THE USE OF THE WORK.
+THE WORK IS PROVIDED "AS IS," WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT. THE ORIGINAL AUTHOR SHALL NOT BE LIABLE FOR ANY CLAIMS OR DAMAGES ARISING FROM THE USE OF THE WORK.
 
 5. Termination
-Violation of any terms in this license will result in the immediate termination of your rights to use the Work.
+5.1 Any violation of this license will result in the immediate termination of your rights to use the Work.
+5.2 Upon termination, you must cease all use of the Work and destroy any copies in your possession.
 
-By using the Work, you agree to abide by the terms of this license.
+By using the Work, you acknowledge that you have read and understood this license and agree to be bound by its terms.
