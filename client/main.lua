@@ -172,51 +172,145 @@ local function useBed(side, bedId)
 end
 
 local function CreateBedInteractions()
-    for bedId, bedData in pairs(config.beds) do
+    if config.useTarget then
+        for bedId, bedData in pairs(config.beds) do
         
-        if bedData.left and bedData.left.box then
-            exports.ox_target:addBoxZone({
-                coords = bedData.left.box.coords,
-                size = bedData.left.box.size,
-                rotation = bedData.left.box.rotation,
-                debug = config.debug,
-                options = {
-                    {
-                        name = 'lay_left_' .. bedId,
-                        label = 'Lay Down (Sleep)',
+            if bedData.left and bedData.left.box then
+                exports.ox_target:addBoxZone({
+                    coords = bedData.left.box.coords,
+                    size = bedData.left.box.size,
+                    rotation = bedData.left.box.rotation,
+                    debug = config.debug,
+                    options = {
+                        {
+                            name = 'lay_left_' .. bedId,
+                            label = 'Lay Down (Sleep)',
+                            canInteract = function()
+                                return not isOnBed
+                            end,
+                            onSelect = function()
+                                isOnBed = true
+                                useBed('left', bedId)
+                            end
+                        },
+                    }
+                })
+            end
+    
+            
+            if bedData.right and bedData.right.box then
+                exports.ox_target:addBoxZone({
+                    coords = bedData.right.box.coords,
+                    size = bedData.right.box.size,
+                    rotation = bedData.right.box.rotation,
+                    debug = config.debug,
+                    options = {
+                        {
+                            name = 'lay_right_' .. bedId,
+                            label = 'Lay Down (Sleep)',
+                            canInteract = function()
+                                return not isOnBed
+                            end,
+                            onSelect = function()
+                                isOnBed = true
+                                useBed('right', bedId)
+                            end
+                        },
+                    }
+                })
+            end
+        end
+    else
+        local duiHandlers = {}
+        
+        for bedId, bedData in pairs(config.beds) do
+            if bedData.left and bedData.left.box then
+                local point = lib.points.new({
+                    coords = bedData.left.box.coords,
+                    distance = 3,
+                    id = "bed_hold_left_" .. bedId
+                })
+                
+                function point:onEnter()
+                    print(self.id)
+                    duiHandlers[self.id] = exports.LGF_SpriteTextUi:HandleHoldTextUI(self.id, {
+                        Visible = true,
+                        Message = 'Lay Down (Sleep)',
+                        Bind = "E",
+                        CircleColor = "teal",
+                        UseOnlyBind = false,
+                        BindToHold = 38,
+                        TimeToHold = 2,
+                        DistanceHold = 2,
+                        Coords = self.coords,
                         canInteract = function()
                             return not isOnBed
                         end,
-                        onSelect = function()
+                        onCallback = function()
                             isOnBed = true
                             useBed('left', bedId)
                         end
-                    },
-                }
-            })
-        end
+                    })
+                    self.duiHandler = duiHandlers[self.id]
+                end
 
-        
-        if bedData.right and bedData.right.box then
-            exports.ox_target:addBoxZone({
-                coords = bedData.right.box.coords,
-                size = bedData.right.box.size,
-                rotation = bedData.right.box.rotation,
-                debug = config.debug,
-                options = {
-                    {
-                        name = 'lay_right_' .. bedId,
-                        label = 'Lay Down (Sleep)',
+                function point:onExit()
+                    exports.LGF_SpriteTextUi:CloseHoldTextUI(self.id)
+                    self.duiHandler = nil
+                end
+
+                function point:nearby()
+                    exports.LGF_SpriteTextUi:Draw3DSprite({
+                        duiHandler = self.duiHandler,
+                        coords = self.coords,
+                        maxDistance = self.distance,
+                    })
+                end
+            end
+
+            if bedData.right and bedData.right.box then
+                local point = lib.points.new({
+                    coords = bedData.right.box.coords,
+                    distance = 3,
+                    id = "bed_hold_right_" .. bedId
+                })
+
+                function point:onEnter()
+                    print(self.id)
+                    duiHandlers[self.id] = exports.LGF_SpriteTextUi:HandleHoldTextUI(self.id, {
+                        Visible = true,
+                        Message = 'Lay Down (Sleep)',
+                        Bind = "E",
+                        CircleColor = "teal",
+                        UseOnlyBind = false,
+                        BindToHold = 38,
+                        TimeToHold = 2,
+                        DistanceHold = 2,
+                        Coords = self.coords,
                         canInteract = function()
                             return not isOnBed
                         end,
-                        onSelect = function()
+                        onCallback = function()
                             isOnBed = true
                             useBed('right', bedId)
                         end
-                    },
-                }
-            })
+                    })
+                    self.duiHandler = duiHandlers[self.id]
+                end
+
+                function point:onExit()
+                    exports.LGF_SpriteTextUi:CloseHoldTextUI(self.id)
+                    self.duiHandler = nil
+                end
+
+                function point:nearby()
+                    exports.LGF_SpriteTextUi:Draw3DSprite({
+                        duiHandler = self.duiHandler,
+                        coords = self.coords,
+                        maxDistance = self.distance,
+                    })
+                end
+            end
         end
     end
 end
